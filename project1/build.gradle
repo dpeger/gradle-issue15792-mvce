@@ -1,0 +1,14 @@
+apply from: "${project.rootDir}/gradle/tasks.gradle"
+
+configurations {
+  dist
+}
+
+task buildProject1(type: MvceTask) {
+  outputs.upToDateWhen { false }
+  outputFile = rootProject.file("${buildDir}/mvce.txt")
+}
+
+artifacts {
+  dist buildProject1.outputFile
+}

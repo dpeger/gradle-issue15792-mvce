@@ -1,0 +1,12 @@
+configurations {
+  buildSource
+}
+
+dependencies {
+  buildSource project(path: ':project1', configuration: 'dist')
+}
+
+task buildProject2(type: Copy) {
+   from configurations.buildSource
+   into rootProject.file("${buildDir}")
+}

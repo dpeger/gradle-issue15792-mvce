@@ -1,0 +1,15 @@
+import java.time.LocalDateTime
+
+class MvceTask extends DefaultTask {
+
+  @OutputFile
+  RegularFileProperty outputFile = project.objects.fileProperty()
+
+  @TaskAction
+  void execute() {
+    def tOutFile = outputFile.get().asFile
+    tOutFile.parentFile.mkdirs()
+    tOutFile.text = "MvceTask was here at " + LocalDateTime.now()
+  }
+}
+rootProject.ext.MvceTask = MvceTask
